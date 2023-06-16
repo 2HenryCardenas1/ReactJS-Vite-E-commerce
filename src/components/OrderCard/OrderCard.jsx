@@ -1,7 +1,24 @@
-import React from 'react'
+import {XMarkIcon} from "@heroicons/react/24/solid";
+import React from "react";
 
-export default function OrderCard() {
+export default function OrderCard(props) {
+  const {title, image, price} = props;
   return (
-    
-  )
+    <div className="flex justify-between items-center mb-3">
+      <div className="flex items-center gap-2">
+        <figure className="w-20 h-20">
+          <img
+            src={image}
+            alt={title}
+            className="w-full h-full rounded-lg object-cover"
+          />
+        </figure>
+        <p className="text-sm font-light">{title}</p>
+      </div>
+      <div className="flex items-center gap-2">
+        <p className="text-ls font-medium">{price}</p>
+        <XMarkIcon className="w-6 h-6 text-black cursor-pointer" />
+      </div>
+    </div>
+  );
 }

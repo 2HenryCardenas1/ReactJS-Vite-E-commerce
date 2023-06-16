@@ -1,9 +1,12 @@
 import {XMarkIcon} from "@heroicons/react/24/solid";
 import React from "react";
 import useShoppingCard from "../../hooks/useShoppingCard";
+import OrderCard from "../OrderCard/OrderCard";
 import "./styles.css";
 export default function CheckoutSideMenu() {
-  const {isCheckoutSideMenuOpen, closeCheckoitSideMenu} = useShoppingCard();
+  const {isCheckoutSideMenuOpen, closeCheckoitSideMenu, shoppingCard} =
+    useShoppingCard();
+
   return (
     <aside
       className={`${
@@ -18,6 +21,17 @@ export default function CheckoutSideMenu() {
             onClick={() => closeCheckoitSideMenu()}
           />
         </div>
+      </div>
+
+      <div className="px-6 overflow-y-scroll">
+        {shoppingCard.map((item) => (
+          <OrderCard
+            key={item.id}
+            title={item.title}
+            image={item.images[0]}
+            price={item.price}
+          />
+        ))}
       </div>
     </aside>
   );

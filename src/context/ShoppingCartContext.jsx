@@ -19,6 +19,11 @@ export function ShoppingCartProvider({children}) {
   };
   const closeProductDetail = () => setViewDetail(false);
 
+
+  
+
+
+
   const valuesContext = {
     count,
     setCount,

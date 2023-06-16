@@ -1,4 +1,4 @@
-import {PlusIcon} from "@heroicons/react/24/solid";
+import {CheckIcon, PlusIcon} from "@heroicons/react/24/solid";
 import React from "react";
 import useShoppingCard from "../../hooks/useShoppingCard";
 export default function Card(props) {
@@ -28,6 +28,28 @@ export default function Card(props) {
     closeProductDetail();
   };
 
+  const renderIcon = (id) => {
+    const isInCart =
+      shoppingCard.filter((product) => product.id === id).length > 0;
+
+    if (isInCart) {
+      return (
+        <div className="absolute top-0 right-0 flex justify-center items-center bg-green-400  w-6 h-6 rounded-full m-2 p-1">
+          <CheckIcon className="w-4 h-4 text-white" />
+        </div>
+      );
+    } else {
+      return (
+        <div
+          className="absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full m-2 p-1"
+          onClick={(event) => addProductToShoppingCard(event, item)}
+        >
+          <PlusIcon className="w-4 h-4 text-black" />
+        </div>
+      );
+    }
+  };
+
   return (
     <div
       className="bg-white cursor-pointer w-56 h-60 rounded-lg"
@@ -42,12 +64,7 @@ export default function Card(props) {
           src={item.images[0]}
           alt={item.title}
         />
-        <div
-          className="absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full m-2 p-1"
-          onClick={(event) => addProductToShoppingCard(event, item)}
-        >
-          <PlusIcon className="w-4 h-4 text-black" />
-        </div>
+        {renderIcon(item.id)}
       </figure>
       <p className="flex justify-between">
         <span className="text-sm font-light">{item.title}</span>
