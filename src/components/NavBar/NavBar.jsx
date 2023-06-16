@@ -1,8 +1,11 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
+import useShoppingCard from "../../hooks/useShoppingCard";
 
 export default function NavBar() {
   const activeClassName = "underline underline-offset-4";
+
+  const {count} = useShoppingCard();
 
   return (
     <nav className="flex justify-between items-center fixed z-10 top-0 w-full py-5 px-8 text-sm font-light">
@@ -91,7 +94,7 @@ export default function NavBar() {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/">🍔 0</NavLink>
+          <NavLink to="/">🍔 {count}</NavLink>
         </li>
       </ul>
     </nav>

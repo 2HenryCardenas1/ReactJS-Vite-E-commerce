@@ -1,4 +1,5 @@
 import NavBar from "../../components/NavBar/NavBar";
+import {ShoppingCartProvider} from "../../context/ShoppingCartContext";
 import MyAccount from "../MyAccount/MyAccount";
 import MyOrder from "../MyOrder/MyOrder";
 import MyOrders from "../MyOrders/MyOrders";
@@ -42,10 +43,12 @@ const AppRoutes = () => {
 
 function App() {
   return (
-    <BrowserRouter>
-      <AppRoutes />
-      <NavBar />
-    </BrowserRouter>
+    <ShoppingCartProvider>
+      <BrowserRouter>
+        <AppRoutes />
+        <NavBar />
+      </BrowserRouter>
+    </ShoppingCartProvider>
   );
 }
 

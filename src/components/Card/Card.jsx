@@ -1,7 +1,10 @@
 import React from "react";
+import useShoppingCard from "../../hooks/useShoppingCard";
 
 export default function Card(props) {
   const {item} = props;
+
+  const {count, setCount} = useShoppingCard();
 
   return (
     <div className="bg-white cursor-pointer w-56 h-60 rounded-lg">
@@ -14,7 +17,10 @@ export default function Card(props) {
           src={item.images[0]}
           alt={item.title}
         />
-        <div className="absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full m-2 p-1">
+        <div
+          className="absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full m-2 p-1"
+          onClick={() => setCount(count + 1)}
+        >
           +
         </div>
       </figure>
