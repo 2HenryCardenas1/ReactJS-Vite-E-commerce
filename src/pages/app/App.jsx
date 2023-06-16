@@ -1,3 +1,4 @@
+import NavBar from "../../components/NavBar/NavBar";
 import MyAccount from "../MyAccount/MyAccount";
 import MyOrder from "../MyOrder/MyOrder";
 import MyOrders from "../MyOrders/MyOrders";
@@ -43,6 +44,7 @@ function App() {
   return (
     <BrowserRouter>
       <AppRoutes />
+      <NavBar />
     </BrowserRouter>
   );
 }
