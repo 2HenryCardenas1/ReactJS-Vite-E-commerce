@@ -1,3 +1,4 @@
+import {ShoppingBagIcon} from "@heroicons/react/24/solid";
 import React from "react";
 import {NavLink} from "react-router-dom";
 import useShoppingCard from "../../hooks/useShoppingCard";
@@ -8,7 +9,7 @@ export default function NavBar() {
   const {count} = useShoppingCard();
 
   return (
-    <nav className="flex justify-between items-center fixed z-10 top-0 w-full py-5 px-8 text-sm font-light">
+    <nav className="flex justify-between items-center fixed z-10 top-0 w-full py-5 px-8 text-sm font-light bg-amber-200">
       <ul className="flex items-center gap-3">
         <li className="font-semibold text-lg">
           <NavLink
@@ -93,8 +94,9 @@ export default function NavBar() {
             Sign Out
           </NavLink>
         </li>
-        <li>
-          <NavLink to="/">🍔 {count}</NavLink>
+        <li className="flex justify-center items-center">
+          <ShoppingBagIcon className="w-6 h-6 " />
+          <div>{count}</div>
         </li>
       </ul>
     </nav>
