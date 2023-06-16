@@ -1,3 +1,4 @@
+import CheckoutSideMenu from "../../components/CheckoutSideMenu/CheckoutSideMenu";
 import NavBar from "../../components/NavBar/NavBar";
 import {ShoppingCartProvider} from "../../context/ShoppingCartContext";
 import MyAccount from "../MyAccount/MyAccount";
@@ -47,6 +48,7 @@ function App() {
       <BrowserRouter>
         <AppRoutes />
         <NavBar />
+        <CheckoutSideMenu />
       </BrowserRouter>
     </ShoppingCartProvider>
   );

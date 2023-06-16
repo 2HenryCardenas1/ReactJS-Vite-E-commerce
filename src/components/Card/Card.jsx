@@ -4,13 +4,30 @@ import useShoppingCard from "../../hooks/useShoppingCard";
 export default function Card(props) {
   const {item} = props;
 
-  const {count, setCount, openProductDetail, setProductToShow} =
-    useShoppingCard();
+  const {
+    count,
+    setCount,
+    openProductDetail,
+    closeProductDetail,
+    setProductToShow,
+    setShoppingCar,
+    shoppingCard,
+    openCheckoitSideMenu,
+  } = useShoppingCard();
 
   const showProductDetail = () => {
     openProductDetail();
     setProductToShow(item);
   };
+
+  const addProductToShoppingCard = (event, data) => {
+    event.stopPropagation();
+    setCount(count + 1);
+    setShoppingCar([...shoppingCard, data]);
+    openCheckoitSideMenu();
+    closeProductDetail();
+  };
+
   return (
     <div
       className="bg-white cursor-pointer w-56 h-60 rounded-lg"
@@ -27,7 +44,7 @@ export default function Card(props) {
         />
         <div
           className="absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full m-2 p-1"
-          onClick={() => setCount(count + 1)}
+          onClick={(event) => addProductToShoppingCard(event, item)}
         >
           <PlusIcon className="w-4 h-4 text-black" />
         </div>
