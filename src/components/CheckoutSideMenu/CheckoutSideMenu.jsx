@@ -36,6 +36,7 @@ export default function CheckoutSideMenu() {
 
     setOrderProducts([...orderProducts, orderToAdd]);
     setShoppingCar([]);
+    setCount(0);
   };
 
   return (

@@ -11,8 +11,7 @@ export function ShoppingCartProvider({children}) {
 
   const [orderProducts, setOrderProducts] = useState([]);
 
-
-
+  const [items, setItems] = useState([]);
 
   const openCheckoitSideMenu = () => {
     setCheckoutSideMenuOpen(true);
@@ -23,11 +22,6 @@ export function ShoppingCartProvider({children}) {
     setViewDetail(true);
   };
   const closeProductDetail = () => setViewDetail(false);
-
-
-
-
-
 
   const valuesContext = {
     count,
@@ -43,7 +37,7 @@ export function ShoppingCartProvider({children}) {
     openCheckoitSideMenu,
     closeCheckoitSideMenu,
     orderProducts,
-    setOrderProducts
+    setOrderProducts,
   };
 
   return (
