@@ -13,7 +13,8 @@ export function ShoppingCartProvider({children}) {
 
   const [items, setItems] = useState([]);
 
-  const [searchByTitle, setSearchByTitle] = useState("");
+  const [searchByTitle, setSearchByTitle] = useState(null);
+  const [filteredItems, setFilteredItems] = useState([]);
 
   const openCheckoitSideMenu = () => {
     setCheckoutSideMenuOpen(true);
@@ -30,6 +31,22 @@ export function ShoppingCartProvider({children}) {
       .then((res) => res.json())
       .then((data) => setItems(data));
   }, []);
+
+  const filteredItemsByTitle = (items, searchByTitle) => {
+    return items.filter((item) =>
+      item.title.toLowerCase().includes(searchByTitle.toLowerCase())
+    );
+  };
+
+  useEffect(() => {
+    if (searchByTitle) {
+      setFilteredItems(filteredItemsByTitle(items, searchByTitle));
+    } else {
+      setFilteredItems(items);
+    }
+  }, [items, searchByTitle]);
+
+ 
 
   const valuesContext = {
     count,
@@ -49,6 +66,7 @@ export function ShoppingCartProvider({children}) {
     items,
     searchByTitle,
     setSearchByTitle,
+    filteredItems,
   };
 
   return (

@@ -5,7 +5,20 @@ import ProductDetail from "../../components/ProductDetail/ProductDetail";
 import useShoppingCard from "../../hooks/useShoppingCard";
 
 export default function Home() {
-  const {items, setSearchByTitle} = useShoppingCard();
+  const {items, setSearchByTitle, searchByTitle, filteredItems} =
+    useShoppingCard();
+
+  const renderView = () => {
+    if (searchByTitle?.length > 0) {
+      if (filteredItems?.length > 0) {
+        return filteredItems?.map((item) => <Card key={item.id} item={item} />);
+      } else {
+        return <h1 className="text-2xl font-medium">Not results</h1>;
+      }
+    } else {
+      return items?.map((item) => <Card key={item.id} item={item} />);
+    }
+  };
 
   return (
     <Layout>
@@ -19,9 +32,7 @@ export default function Home() {
         onChange={(event) => setSearchByTitle(event.target.value)}
       />
       <div className="grid grid-cols-4 gap-4 w-full max-w-screen-lg">
-        {items?.map((item) => (
-          <Card key={item.id} item={item} />
-        ))}
+        {renderView()}
       </div>
       <ProductDetail />
     </Layout>
