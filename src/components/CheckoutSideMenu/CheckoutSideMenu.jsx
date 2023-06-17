@@ -3,9 +3,25 @@ import React from "react";
 import useShoppingCard from "../../hooks/useShoppingCard";
 import OrderCard from "../OrderCard/OrderCard";
 import "./styles.css";
+
+import {totalPrice} from "../../utils/TotalPrice";
 export default function CheckoutSideMenu() {
-  const {isCheckoutSideMenuOpen, closeCheckoitSideMenu, shoppingCard} =
-    useShoppingCard();
+  const {
+    isCheckoutSideMenuOpen,
+    closeCheckoitSideMenu,
+    shoppingCard,
+    setShoppingCar,
+    setCount,
+  } = useShoppingCard();
+
+  const handleDelete = (id) => {
+    const filteredProducts = shoppingCard.filter(
+      (product) => product.id !== id
+    );
+
+    setShoppingCar(filteredProducts);
+    setCount(filteredProducts.length);
+  };
 
   return (
     <aside
@@ -27,11 +43,22 @@ export default function CheckoutSideMenu() {
         {shoppingCard.map((item) => (
           <OrderCard
             key={item.id}
+            id={item.id}
             title={item.title}
             image={item.images[0]}
             price={item.price}
+            handleDelete={handleDelete}
           />
         ))}
+      </div>
+
+      <div className="px-6">
+        <p className="flex justify-between items-center">
+          <span className="font-light">Total:</span>
+          <span className="font-medium text-xl">
+            ${totalPrice(shoppingCard)}
+          </span>
+        </p>
       </div>
     </aside>
   );

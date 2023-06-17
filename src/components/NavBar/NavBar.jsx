@@ -6,7 +6,12 @@ import useShoppingCard from "../../hooks/useShoppingCard";
 export default function NavBar() {
   const activeClassName = "underline underline-offset-4";
 
-  const {count} = useShoppingCard();
+  const {
+    count,
+    openCheckoitSideMenu,
+    isCheckoutSideMenuOpen,
+    closeCheckoitSideMenu,
+  } = useShoppingCard();
 
   return (
     <nav className="flex justify-between items-center fixed z-10 top-0 w-full py-5 px-8 text-sm font-light bg-amber-200">
@@ -95,7 +100,14 @@ export default function NavBar() {
           </NavLink>
         </li>
         <li className="flex justify-center items-center">
-          <ShoppingBagIcon className="w-6 h-6 " />
+          <ShoppingBagIcon
+            className="w-6 h-6 "
+            onClick={
+              isCheckoutSideMenuOpen
+                ? closeCheckoitSideMenu
+                : openCheckoitSideMenu
+            }
+          />
           <div>{count}</div>
         </li>
       </ul>
