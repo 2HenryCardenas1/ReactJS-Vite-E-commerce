@@ -5,18 +5,13 @@ import ProductDetail from "../../components/ProductDetail/ProductDetail";
 import useShoppingCard from "../../hooks/useShoppingCard";
 
 export default function Home() {
-  const {items, setSearchByTitle, searchByTitle, filteredItems} =
-    useShoppingCard();
+  const {setSearchByTitle, filteredItems} = useShoppingCard();
 
   const renderView = () => {
-    if (searchByTitle?.length > 0) {
-      if (filteredItems?.length > 0) {
-        return filteredItems?.map((item) => <Card key={item.id} item={item} />);
-      } else {
-        return <h1 className="text-2xl font-medium">Not results</h1>;
-      }
+    if (filteredItems?.length > 0) {
+      return filteredItems?.map((item) => <Card key={item.id} item={item} />);
     } else {
-      return items?.map((item) => <Card key={item.id} item={item} />);
+      return <h1 className="text-2xl font-medium">Not results</h1>;
     }
   };
 

@@ -15,6 +15,7 @@ export default function CheckoutSideMenu() {
     setCount,
     orderProducts,
     setOrderProducts,
+    setSearchByTitle,
   } = useShoppingCard();
 
   const handleDelete = (id) => {
@@ -37,6 +38,7 @@ export default function CheckoutSideMenu() {
     setOrderProducts([...orderProducts, orderToAdd]);
     setShoppingCar([]);
     setCount(0);
+    setSearchByTitle(null);
   };
 
   return (

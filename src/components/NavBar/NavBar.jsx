@@ -11,23 +11,18 @@ export default function NavBar() {
     openCheckoitSideMenu,
     isCheckoutSideMenuOpen,
     closeCheckoitSideMenu,
+    setSearchByCategory,
   } = useShoppingCard();
 
   return (
     <nav className="flex justify-between items-center fixed z-10 top-0 w-full py-5 px-8 text-sm font-light bg-amber-200">
       <ul className="flex items-center gap-3">
-        <li className="font-semibold text-lg">
-          <NavLink
-            to="/"
-            className={({isActive}) => (isActive ? activeClassName : null)}
-          >
-            Shopi
-          </NavLink>
-        </li>
+        <li className="font-semibold text-lg">Shopi</li>
         <li>
           <NavLink
             to="/"
             className={({isActive}) => (isActive ? activeClassName : null)}
+            onClick={() => setSearchByCategory(null)}
           >
             All
           </NavLink>
@@ -36,6 +31,7 @@ export default function NavBar() {
           <NavLink
             to="/clothes"
             className={({isActive}) => (isActive ? activeClassName : null)}
+            onClick={() => setSearchByCategory("clothes")}
           >
             Clothes
           </NavLink>
@@ -44,6 +40,7 @@ export default function NavBar() {
           <NavLink
             to="/electronics"
             className={({isActive}) => (isActive ? activeClassName : null)}
+            onClick={() => setSearchByCategory("electronics")}
           >
             Electronics
           </NavLink>
@@ -52,6 +49,7 @@ export default function NavBar() {
           <NavLink
             to="/furnitures"
             className={({isActive}) => (isActive ? activeClassName : null)}
+            onClick={() => setSearchByCategory("furnitures")}
           >
             Furnitures
           </NavLink>
@@ -60,6 +58,7 @@ export default function NavBar() {
           <NavLink
             to="/toys"
             className={({isActive}) => (isActive ? activeClassName : null)}
+            onClick={() => setSearchByCategory("toys")}
           >
             Toys
           </NavLink>
@@ -68,6 +67,7 @@ export default function NavBar() {
           <NavLink
             to="/others"
             className={({isActive}) => (isActive ? activeClassName : null)}
+            onClick={() => setSearchByCategory("others")}
           >
             Others
           </NavLink>
