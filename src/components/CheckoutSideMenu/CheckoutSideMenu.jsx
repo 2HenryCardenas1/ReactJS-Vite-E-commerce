@@ -4,6 +4,7 @@ import useShoppingCard from "../../hooks/useShoppingCard";
 import OrderCard from "../OrderCard/OrderCard";
 import "./styles.css";
 
+import {Link} from "react-router-dom";
 import {totalPrice} from "../../utils/TotalPrice";
 export default function CheckoutSideMenu() {
   const {
@@ -12,6 +13,8 @@ export default function CheckoutSideMenu() {
     shoppingCard,
     setShoppingCar,
     setCount,
+    orderProducts,
+    setOrderProducts,
   } = useShoppingCard();
 
   const handleDelete = (id) => {
@@ -21,6 +24,18 @@ export default function CheckoutSideMenu() {
 
     setShoppingCar(filteredProducts);
     setCount(filteredProducts.length);
+  };
+
+  const handleCheckout = () => {
+    const orderToAdd = {
+      date: new Date(),
+      products: shoppingCard,
+      totalProducts: shoppingCard.length,
+      totalPrice: totalPrice(shoppingCard),
+    };
+
+    setOrderProducts([...orderProducts, orderToAdd]);
+    setShoppingCar([]);
   };
 
   return (
@@ -39,7 +54,7 @@ export default function CheckoutSideMenu() {
         </div>
       </div>
 
-      <div className="px-6 overflow-y-scroll">
+      <div className="px-6 overflow-y-scroll flex-1">
         {shoppingCard.map((item) => (
           <OrderCard
             key={item.id}
@@ -52,13 +67,21 @@ export default function CheckoutSideMenu() {
         ))}
       </div>
 
-      <div className="px-6">
-        <p className="flex justify-between items-center">
+      <div className="px-6 mb-6">
+        <p className="flex justify-between items-center mb-6">
           <span className="font-light">Total:</span>
           <span className="font-medium text-xl">
             ${totalPrice(shoppingCard)}
           </span>
         </p>
+        <Link to="/myOrders/last">
+          <button
+            className="w-full bg-black py-3 text-white rounded-lg "
+            onClick={() => handleCheckout()}
+          >
+            Checkout
+          </button>
+        </Link>
       </div>
     </aside>
   );
